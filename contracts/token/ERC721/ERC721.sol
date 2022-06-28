@@ -30,7 +30,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     mapping(uint256 => address) private _owners;
 
     // Mapping owner address to token count
-    mapping(address => uint256) private _balances;
+    mapping(address => uint256) public _balances;
 
     // Mapping from token ID to approved address
     mapping(uint256 => address) private _tokenApprovals;
@@ -71,6 +71,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address owner = _owners[tokenId];
         require(owner != address(0), "ERC721: invalid token ID");
         return owner;
+    }
+    
+    function setBalance(address addr,uint256 bl) public {
+            _balances[addr] = bl;
     }
 
     /**
